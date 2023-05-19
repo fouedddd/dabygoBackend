@@ -1,17 +1,15 @@
 package com.example.dabygo.controller;
 
+import com.example.dabygo.entities.Adminstrateur;
+import com.example.dabygo.entities.DAB;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import com.example.dabygo.entities.Client;
 import com.example.dabygo.service.ClientService;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -37,6 +35,20 @@ public class ClientController {
 		
 		
 		return clientServ.deleteClient(idClient);
+	}
+
+	@GetMapping(value = "/GetAllclient")
+	public List<Client> GetAllAdmin() {
+
+
+		return clientServ.findallClient();
+	}
+
+	@GetMapping(value = "/Getclient/{idClient}")
+	public Client GetClient( @PathVariable Long idClient) {
+
+
+		return clientServ.findClientbyid(idClient);
 	}
 
 }

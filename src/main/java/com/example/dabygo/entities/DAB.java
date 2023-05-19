@@ -22,6 +22,9 @@ public class DAB implements Serializable {
 	private float longitude;
 	private long plafon_max;
 	private String etat;
+	private String image;
+	private String adresse;
+	
 	
 	
 	

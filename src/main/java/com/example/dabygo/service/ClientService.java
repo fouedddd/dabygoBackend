@@ -1,11 +1,15 @@
 package com.example.dabygo.service;
 
+import com.example.dabygo.entities.Adminstrateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import com.example.dabygo.entities.Client;
 import com.example.dabygo.repository.ClientRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -30,7 +34,7 @@ public class ClientService implements IClientService{
 		cl.setEmail(client.getEmail());
 		cl.setLogin(client.getLogin());
 		cl.setPassword(client.getPassword());
-		cl.setConfirmpasswordString(client.getConfirmpasswordString());
+		cl.setConfirmpassword(client.getConfirmpassword());
        
 		return clientRep.save(cl) ;
 	}
@@ -48,6 +52,22 @@ public class ClientService implements IClientService{
 			ch="Client doesn't exist";
 		}
 		return ch;
+	}
+
+	@Override
+	public List<Client> findallClient() {
+		return clientRep.findAll();
+	}
+
+	@Override
+	public Client findClientbyid(Long idClient) {
+		String ch="not found";
+
+		Optional<Client> client = clientRep.findById(idClient);
+		if (client.isPresent()) {
+			return client.get();
+		}
+		return null;
 	}
 
 }
